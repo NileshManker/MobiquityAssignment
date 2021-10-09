@@ -1,5 +1,6 @@
 package com.nm.mobiquityassignment.ui.fragments
 
+import android.content.Context
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
@@ -7,13 +8,15 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.navigation.NavOptions
 import androidx.navigation.fragment.findNavController
 import com.nm.mobiquityassignment.R
+import com.nm.mobiquityassignment.utils.Constants.Companion.IS_LOGGED_IN
+import com.nm.mobiquityassignment.utils.Constants.Companion.IS_SESSION_EXPIRED
+import com.nm.mobiquityassignment.utils.SharedPreferencesUtils
 
 /**
  * A simple [Fragment] subclass.
- * Use the [SplashFragment.newInstance] factory method to
- * create an instance of this fragment.
  */
 class SplashFragment : Fragment() {
 
@@ -30,8 +33,22 @@ class SplashFragment : Fragment() {
 
         Handler(Looper.getMainLooper()).postDelayed({
             context?.let {
-                findNavController().navigate(R.id.action_splashFragment_to_homeFragment)
+                val sharedPreferencesUtils = SharedPreferencesUtils(activity as Context)
+                if (sharedPreferencesUtils.getBool(IS_LOGGED_IN) && !sharedPreferencesUtils.getBool(IS_SESSION_EXPIRED)){
+                    performAction(R.id.action_splashFragment_to_homeFragment)
+                    //performAction(R.id.action_splashFragment_to_loginFragment)
+                } else {
+                    performAction(R.id.action_splashFragment_to_homeFragment)
+                }
             }
         }, 2500)
+    }
+
+    private fun performAction(actionId : Int){
+        findNavController().navigate(actionId,
+            null,
+            NavOptions.Builder()
+                .setPopUpTo(R.id.splashFragment,
+                    true).build())
     }
 }

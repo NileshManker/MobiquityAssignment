@@ -12,6 +12,7 @@ class Constants {
         const val USER_PASSWORD = "user_password"
         const val REMEMBER_PWD = "remember_password"
         const val IS_SESSION_EXPIRED = "is_session_expired"
+        const val IS_LOGGED_IN = "is_logged_in"
         const val SESSION_ID = "session_id"
 
         fun create() : NetworkApi {

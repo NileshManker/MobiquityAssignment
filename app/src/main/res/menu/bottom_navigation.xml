@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/gallery_fragment"
+        android:icon="@drawable/ic_launcher_background"
+        android:title="@string/gallery"/>
+
+    <item
+        android:id="@+id/about_us_fragment"
+        android:icon="@drawable/ic_launcher_background"
+        android:title="@string/about_us"/>
+</menu>

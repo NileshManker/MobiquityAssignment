@@ -6,14 +6,12 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
+import androidx.navigation.fragment.findNavController
 import com.nm.mobiquityassignment.R
 import com.nm.mobiquityassignment.viewmodel.GalleryViewModel
 
 class GalleryFragment : Fragment() {
-
-    companion object {
-        fun newInstance() = GalleryFragment()
-    }
 
     private lateinit var viewModel: GalleryViewModel
 
@@ -24,10 +22,12 @@ class GalleryFragment : Fragment() {
         return inflater.inflate(R.layout.gallery_fragment, container, false)
     }
 
-    override fun onActivityCreated(savedInstanceState: Bundle?) {
-        super.onActivityCreated(savedInstanceState)
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
         viewModel = ViewModelProvider(this).get(GalleryViewModel::class.java)
-        // TODO: Use the ViewModel
+        val btnOpenGallery = view.findViewById<Button>(R.id.btn_openGallery)
+        btnOpenGallery.setOnClickListener {
+            findNavController().navigate(R.id.action_homeFragment_to_photoDetailFragment)
+        }
     }
-
 }
