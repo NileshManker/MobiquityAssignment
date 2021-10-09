@@ -7,6 +7,12 @@ import retrofit2.converter.gson.GsonConverterFactory
 class Constants {
     companion object{
         const val BASE_URL = "https://simplifiedcoding.net/demos/"
+        const val PREF_NAME = "gallery_pref"
+        const val USER_NAME = "user_name"
+        const val USER_PASSWORD = "user_password"
+        const val REMEMBER_PWD = "remember_password"
+        const val IS_SESSION_EXPIRED = "is_session_expired"
+        const val SESSION_ID = "session_id"
 
         fun create() : NetworkApi {
 

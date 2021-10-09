@@ -1,5 +1,15 @@
 <resources>
-    <string name="app_name">MobiquityAssignment</string>
-    <!-- TODO: Remove or change this placeholder text -->
+    <string name="app_name">Gallery</string>
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="gallery">Gallery</string>
+    <string name="about_us">About Us</string>
+    <string name="login">login</string>
+    <string name="user_name">Name</string>
+    <string name="user_password">Password</string>
+    <string name="logout">Logout</string>
+    <string name="loading">Loading</string>
+    <string name="remember_credentials">Do you want to remember the credentials for future</string>
+    <string name="yes">Yes</string>
+    <string name="no">No</string>
+    <string name="logout_message">Do you want to logout</string>
 </resources>
