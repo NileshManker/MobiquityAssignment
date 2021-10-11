@@ -1,15 +1,15 @@
 package com.nm.mobiquityassignment.ui.fragments
 
+import android.icu.lang.UCharacter.GraphemeClusterBreak.T
 import android.os.Bundle
-import android.view.LayoutInflater
-import android.view.MenuItem
-import android.view.View
-import android.view.ViewGroup
+import android.util.Log
+import android.view.*
+import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
-import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.android.material.navigation.NavigationBarView
 import com.nm.mobiquityassignment.R
+import com.nm.mobiquityassignment.databinding.HomeFragmentBinding
 
 
 class HomeFragment : Fragment() {
@@ -18,6 +18,7 @@ class HomeFragment : Fragment() {
     val aboutUsFragment: Fragment = AboutUsFragment()
     lateinit var fm : FragmentManager
     var active = galleryFragment
+    private var binding: HomeFragmentBinding? = null
 
     private var bottomNavigationListener = object : NavigationBarView.OnItemSelectedListener{
         override fun onNavigationItemSelected(item: MenuItem): Boolean {
@@ -41,16 +42,19 @@ class HomeFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(R.layout.home_fragment, container, false)
+        binding = HomeFragmentBinding.inflate(inflater, container, false)
+        return binding?.root
     }
 
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setHasOptionsMenu(true)
+    }
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         fm = childFragmentManager
 
-        val navigation = view.findViewById(R.id.home_bottom_navigation_bar) as BottomNavigationView
-        navigation.setOnItemSelectedListener(bottomNavigationListener)
-
+        binding?.homeBottomNavigationBar?.setOnItemSelectedListener(bottomNavigationListener)
         if(!aboutUsFragment.isAdded){
             fm.beginTransaction().add(R.id.main_container, aboutUsFragment, "About Us").hide(aboutUsFragment).commit()
         }

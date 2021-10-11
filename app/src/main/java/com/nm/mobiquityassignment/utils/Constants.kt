@@ -11,7 +11,7 @@ class Constants {
         const val USER_NAME = "user_name"
         const val USER_PASSWORD = "user_password"
         const val REMEMBER_PWD = "remember_password"
-        const val IS_SESSION_EXPIRED = "is_session_expired"
+        const val IS_SESSION_VALID = "is_session_valid"
         const val IS_LOGGED_IN = "is_logged_in"
         const val SESSION_ID = "session_id"
 

@@ -12,7 +12,7 @@ import androidx.navigation.NavOptions
 import androidx.navigation.fragment.findNavController
 import com.nm.mobiquityassignment.R
 import com.nm.mobiquityassignment.utils.Constants.Companion.IS_LOGGED_IN
-import com.nm.mobiquityassignment.utils.Constants.Companion.IS_SESSION_EXPIRED
+import com.nm.mobiquityassignment.utils.Constants.Companion.IS_SESSION_VALID
 import com.nm.mobiquityassignment.utils.SharedPreferencesUtils
 
 /**
@@ -34,14 +34,13 @@ class SplashFragment : Fragment() {
         Handler(Looper.getMainLooper()).postDelayed({
             context?.let {
                 val sharedPreferencesUtils = SharedPreferencesUtils(activity as Context)
-                if (sharedPreferencesUtils.getBool(IS_LOGGED_IN) && !sharedPreferencesUtils.getBool(IS_SESSION_EXPIRED)){
-                    performAction(R.id.action_splashFragment_to_homeFragment)
-                    //performAction(R.id.action_splashFragment_to_loginFragment)
+                if (!sharedPreferencesUtils.getBool(IS_LOGGED_IN) && !sharedPreferencesUtils.getBool(IS_SESSION_VALID)){
+                    performAction(R.id.action_splashFragment_to_loginFragment)
                 } else {
                     performAction(R.id.action_splashFragment_to_homeFragment)
                 }
             }
-        }, 2500)
+        }, 1)
     }
 
     private fun performAction(actionId : Int){
